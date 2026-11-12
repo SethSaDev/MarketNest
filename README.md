@@ -70,7 +70,7 @@ MarketNest/
 
 ```bash
 # Clone repository
-git clone https://github.com/FaseehUllahJafar/MarketNest.git
+git clone https://github.com/SethSaDev/MarketNest.git
 cd MarketNest
 
 # Start Docker services (PostgreSQL, Redis)
