@@ -1,6 +1,9 @@
 # MarketNest - Multi-Vendor Marketplace
 
-A production-ready multi-vendor marketplace platform with booking engine, Stripe Connect payments, vendor storefronts, reviews, admin panel, and email notifications.
+[![CI](https://github.com/SethSaDev/MarketNest/actions/workflows/ci.yml/badge.svg)](https://github.com/SethSaDev/MarketNest/actions/workflows/ci.yml)
+![.NET 10](https://img.shields.io/badge/.NET-10-512BD4) ![React 18](https://img.shields.io/badge/React-18-61DAFB) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-4169E1)
+
+A multi-vendor services marketplace with a booking engine, Stripe Connect payments, vendor storefronts, reviews, admin panel, and email notifications.
 
 ## 🎯 Overview
 
@@ -262,31 +265,24 @@ Access frontend: `http://localhost:5173`
 5. Both parties notified
 
 
-## 🧪 Testing
+## 🧪 Build & Quality Checks
 
-Currently includes:
-- Domain entity definitions with validation rules
-- CQRS handler specifications
-- Repository interface contracts
-- API endpoint contracts (Swagger)
+Every push runs [GitHub Actions](.github/workflows/ci.yml):
+- `dotnet build` of the four-project solution (Domain, Application, Infrastructure, API)
+- TypeScript type-check (`tsc --noEmit`) and production Vite build of the React client
+- Docker image build of the API
 
-Future additions:
-- Unit tests for business logic
-- Integration tests for API endpoints
-- E2E tests for critical workflows
+Automated unit and integration tests for the Application layer handlers are the next item on the roadmap.
 
-## 🚢 Deployment
-
-### Docker Production Build
+## 🚢 Running with Docker
 
 ```bash
-# Build images
-docker build -f src/MarketNest.API/Dockerfile -t marketnest-api:1.0 .
-docker build -f client/Dockerfile -t marketnest-client:1.0 .
-
-# Run production compose
-docker-compose -f docker-compose.prod.yml up -d
+# PostgreSQL, Redis and the API together
+cp .env.example .env   # fill in the secrets
+docker compose up -d --build
 ```
+
+The API image is built from [`src/MarketNest.API/Dockerfile`](src/MarketNest.API/Dockerfile) (multi-stage, .NET 10 SDK -> ASP.NET runtime on Alpine).
 
 ### Environment Variables
 
@@ -334,20 +330,5 @@ MIT License - see LICENSE file for details
 
 ## 👨‍💻 Author
 
-Created as a comprehensive marketplace platform demonstrating:
-- Clean Architecture principles
-- CQRS pattern implementation
-- Full-stack development (C# + React)
-- Stripe/payment integration
-- Email service integration
-- Background job processing
-- Docker containerization
-- Modern web development practices
-
-## 🤝 Contributing
-
-Pull requests welcome! Please ensure:
-- Code follows conventions
-- Tests pass
-- Documentation is updated
-- Commits follow conventional commit format
+**Seth Sanders** - Senior Software Engineer (.NET, Angular/React, Azure)
+[github.com/SethSaDev](https://github.com/SethSaDev)

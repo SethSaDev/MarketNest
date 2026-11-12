@@ -1,30 +1,3 @@
-import React, { useEffect, useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
-import { bookingApi } from '../api/bookingApi'
-
-export default function BookingConfirmation() {
-    const { id } = useParams()
-    const [booking, setBooking] = useState<any>(null)
-    const navigate = useNavigate()
-
-    useEffect(() => {
-        if (!id) return
-        bookingApi.getById(id).then((b) => setBooking(b))
-    }, [id])
-
-    if (!booking) return <div>Loading…</div>
-
-    return (
-        <div style={{ maxWidth: 800 }}>
-            <div style={{ fontSize: 48, color: '#10b981' }}>✓</div>
-            <h2>Booking Confirmed</h2>
-            <div>Booking #: {booking.id}</div>
-            <div>Listing: {booking.listingTitle}</div>
-            <div>When: {new Date(booking.start).toLocaleString()}</div>
-            <button onClick={() => navigate('/dashboard/bookings')}>View Bookings</button>
-        </div>
-    )
-}
 import React from 'react'
 import MainLayout from '../components/layout/MainLayout'
 import { useParams, Link } from 'react-router-dom'

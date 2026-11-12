@@ -1,26 +1,4 @@
 import React from 'react'
-import { useVendor } from '../../hooks/useVendor'
-
-export default function VendorOnboarding() {
-    const { data: vendor } = useVendor()
-
-    const status = vendor?.status || 'Apply'
-
-    return (
-        <div>
-            <h2>Vendor Onboarding</h2>
-            <div style={{ display: 'flex', gap: 8 }}>
-                {['Apply', 'Approved', 'Stripe', 'Ready'].map((s) => (
-                    <div key={s} style={{ padding: 8, borderBottom: vendor?.status === s ? '2px solid #2563eb' : undefined }}>{s}</div>
-                ))}
-            </div>
-            <div style={{ marginTop: 12 }}>
-                <button onClick={() => window.location.href = vendor?.stripeOnboardingUrl}>Connect Stripe</button>
-            </div>
-        </div>
-    )
-}
-import React from 'react'
 import DashboardLayout from '../../components/layout/DashboardLayout'
 
 export const VendorOnboarding: React.FC = () => {

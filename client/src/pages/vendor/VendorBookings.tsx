@@ -3,7 +3,7 @@ import { useBookings } from '../../hooks/useBookings'
 import BookingStatusBadge from '../../components/bookings/BookingStatusBadge'
 
 export default function VendorBookings() {
-    const { data: bookings } = useBookings({ forVendor: true })
+    const { data: bookings } = useBookings({ role: 'vendor' })
 
     return (
         <div>

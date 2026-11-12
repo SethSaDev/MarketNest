@@ -1,15 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import axios from '../api/axiosInstance'
 
-export function useVendor() {
-    return useQuery(['vendor'], async () => {
-        const r = await axios.get('/api/vendor/me')
-        return r.data
-    })
-}
-import { useQuery } from '@tanstack/react-query'
-import axios from '../api/axiosInstance'
-
 export function useVendor(slug?: string) {
     return useQuery(['vendor', slug], async () => {
         if (!slug) return null

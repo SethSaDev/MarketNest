@@ -1,6 +1,6 @@
 import React from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { notificationApi } from './api/../api/notificationApi'
+import { notificationApi } from '../api/notificationApi'
 
 export default function NotificationsPage(){
   const { data } = useQuery(['notifications','all'], ()=> notificationApi.list({ page:1, pageSize:50 }))

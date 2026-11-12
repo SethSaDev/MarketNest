@@ -4,7 +4,7 @@ import BookingStatusBadge from '../../components/bookings/BookingStatusBadge'
 
 export default function BuyerBookings() {
   const [tab, setTab] = useState('Upcoming')
-  const { data: bookings } = useBookings({ status: tab })
+  const { data: bookings } = useBookings({ role: 'buyer', status: tab })
 
   return (
     <div>
